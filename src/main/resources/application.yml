@@ -1,0 +1,12 @@
+security:
+   oauth2:
+      resource:
+         userInfoUri: http://identity-service:8080/user		
+logging:
+   level:
+      org.springframework: INFO
+      org.springframework.security: DEBUG
+
+management:
+   security:
+      enabled: false
