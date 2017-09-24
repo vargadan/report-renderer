@@ -5,9 +5,7 @@ node('maven') {
    	def IT_PROJECT = "reportengine-it"
    	def PORT = 8080
    	def APP_NAME = "report-renderer"
-
-	sh "export MAVEN_OPTS='-XX:MaxPermSize=512M  -Xms1024m -Xmx2048m'"   	
-
+ 	
    	stage ('Build') {
    		git branch: 'master', url: 'https://github.com/vargadan/report-renderer.git'
    		sh "${mvnCmd} clean install -DskipTests=true"
