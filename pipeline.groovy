@@ -20,7 +20,7 @@ node('maven') {
 
    
    	stage ('Static Analysis') {
- 		sh "export MAVEN_OPTS='-Xms128m -Xmx128m'; ${mvnCmd} org.jacoco:jacoco-maven-plugin:report sonar:sonar -Dsonar.host.url=http://sonarqube:9000/ -DskipTests=true"
+ 		sh "export MAVEN_OPTS='-XX:MaxPermSize=256M  -Xms512m -Xmx512m'; ${mvnCmd} org.jacoco:jacoco-maven-plugin:report sonar:sonar -Dsonar.host.url=http://sonarqube:9000/ -DskipTests=true"
    	}
    	
    	stage ('Test') {
