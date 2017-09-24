@@ -5,6 +5,8 @@ node('maven') {
    	def IT_PROJECT = "reportengine-it"
    	def PORT = 8080
    	def APP_NAME = "report-renderer"
+   	
+   	sh "MAVEN_OPTS='-Xms512m -Xmx512m'"
 
    	stage ('Build') {
    		git branch: 'master', url: 'https://github.com/vargadan/report-renderer.git'
@@ -19,7 +21,8 @@ node('maven') {
 
    
    	stage ('Static Analysis') {
- 		sh "${mvnCmd} org.jacoco:jacoco-maven-plugin:report sonar:sonar -Dsonar.host.url=http://sonarqube:9000/ -DskipTests=true -Xms128m -Xmx128m"
+   		sh "echo $MAVEN_OPTS"
+ 		sh "${mvnCmd} org.jacoco:jacoco-maven-plugin:report sonar:sonar -Dsonar.host.url=http://sonarqube:9000/ -DskipTests=true"
    	}
    	
    	stage ('Test') {
