@@ -21,7 +21,6 @@ node('maven') {
 
    
    	stage ('Static Analysis') {
-   		sh "echo $MAVEN_OPTS"
  		sh "${mvnCmd} org.jacoco:jacoco-maven-plugin:report sonar:sonar -Dsonar.host.url=http://sonarqube:9000/ -DskipTests=true"
    	}
    	
