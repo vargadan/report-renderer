@@ -12,6 +12,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +47,7 @@ public class RendererController {
 	}
 	
 	@Autowired
-	RestTemplate restTemplate;
+	OAuth2RestTemplate restTemplate;
 
 	@RequestMapping(path="/files/{id}.pdf", produces="application/pdf")
 	public ResponseEntity<byte[]> renderPdfReport(@PathVariable("id") String reportFileId) throws JRException {
