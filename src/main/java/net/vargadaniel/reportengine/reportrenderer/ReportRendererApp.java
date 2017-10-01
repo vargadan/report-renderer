@@ -2,10 +2,12 @@ package net.vargadaniel.reportengine.reportrenderer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
-@EnableResourceServer
 @SpringBootApplication
+@EnableResourceServer
+@EnableOAuth2Client
 public class ReportRendererApp {
 
 	public static void main(String... args) {
@@ -16,4 +18,5 @@ public class ReportRendererApp {
 		}
 		SpringApplication.run(ReportRendererApp.class, args);
 	}
+	
 }

@@ -3,23 +3,22 @@ package net.vargadaniel.reportengine.reportrenderer;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
+import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -41,15 +40,13 @@ public class RendererController {
 	    		logger.error("Cloud not load report tempalte", e);
 	    		System.exit(-1);
 		}
-	}	
-	
-	@Autowired
-	private OAuth2ProtectedResourceDetails details;
-	
-	@Bean
-	public OAuth2RestTemplate oauth2RestTemplate() {
-		return new OAuth2RestTemplate(details);
 	}
+	
+    @Bean
+    public OAuth2RestTemplate oauth2RestTemplate(OAuth2ClientContext oauth2ClientContext) {
+    		OAuth2ProtectedResourceDetails details = new ClientCredentialsResourceDetails();
+        return new OAuth2RestTemplate(details, oauth2ClientContext);
+    }
 	
 	@Autowired
 	OAuth2RestTemplate restTemplate;
