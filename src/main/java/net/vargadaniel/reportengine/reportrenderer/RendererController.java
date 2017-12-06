@@ -54,7 +54,7 @@ public class RendererController {
 
 	@RequestMapping(path="/files/{id}.pdf", produces="application/pdf")
 	public ResponseEntity<byte[]> renderPdfReport(@PathVariable("id") String reportFileId, @AuthenticationPrincipal Principal principal) throws JRException {
-		logger.debug("calling /files/{}.pdf with princiapl:{}", reportFileId, principal.getName());
+		logger.info("calling /files/{}.pdf with princiapl:{}", reportFileId, principal.getName());
 		try {
 			ResponseEntity<String> reportFileResponse = restTemplate.getForEntity("http://report-repository:8080/files/" + reportFileId, String.class);
 			String xmlReport = reportFileResponse.getBody();
