@@ -3,7 +3,7 @@ package net.vargadaniel.reportengine.reportrenderer;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+import java.security.Principal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
@@ -52,7 +53,8 @@ public class RendererController {
 	OAuth2RestTemplate restTemplate;
 
 	@RequestMapping(path="/files/{id}.pdf", produces="application/pdf")
-	public ResponseEntity<byte[]> renderPdfReport(@PathVariable("id") String reportFileId) throws JRException {
+	public ResponseEntity<byte[]> renderPdfReport(@PathVariable("id") String reportFileId, @AuthenticationPrincipal Principal principal) throws JRException {
+		logger.debug("calling /files/{}.pdf with princiapl:{}", reportFileId, principal.getName());
 		try {
 			ResponseEntity<String> reportFileResponse = restTemplate.getForEntity("http://report-repository:8080/files/" + reportFileId, String.class);
 			String xmlReport = reportFileResponse.getBody();

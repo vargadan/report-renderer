@@ -2,7 +2,6 @@ package net.vargadaniel.reportengine.reportrenderer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
