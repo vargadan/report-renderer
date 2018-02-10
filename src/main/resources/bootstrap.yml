@@ -3,5 +3,5 @@ spring:
    application:
       name: report-renderer
    cloud:
-      config:
-         uri: http://report-config-server:8080/
+#      config:
+#         uri: http://report-config-server:8080/

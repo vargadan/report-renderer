@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
 <!-- 2015-07-22T23:42:22 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="example" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61f02a44-bde7-4497-87e2-be979d0f191c">
+<jasperReport xmlns:xi="http://www.w3.org/2001/XInclude" 
+	xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+	 name="example" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" 
+	 bottomMargin="20" uuid="61f02a44-bde7-4497-87e2-be979d0f191c">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="XmlDataAdapter"/>
 	<style name="TahomaStyle" isDefault="true" mode="Transparent" fontName="Arial" fontSize="14" pdfFontName="Arial" pdfEncoding="cp1251" isPdfEmbedded="true"/>
 	<queryString language="xPath">
 		<![CDATA[/dummyReport]]>
 	</queryString>
+	<field name="hello" class="java.lang.String">
+		<fieldDescription></fieldDescription>
+	</field>
 	<field name="cif" class="java.lang.String">
 		<fieldDescription><![CDATA[/dummyReport/cif]]></fieldDescription>
 	</field>
