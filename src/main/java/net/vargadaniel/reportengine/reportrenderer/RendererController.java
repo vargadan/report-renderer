@@ -1,10 +1,14 @@
 package net.vargadaniel.reportengine.reportrenderer;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.Principal;
+import java.util.UUID;
 
+import org.jfree.util.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +63,15 @@ public class RendererController {
 			ResponseEntity<String> reportFileResponse = restTemplate.getForEntity("http://report-repository:8080/files/" + reportFileId, String.class);
 			String xmlReport = reportFileResponse.getBody();
 			byte[] renderedReport = JasperRenderer.generateReportFile(reportTemplate, xmlReport.getBytes(), ReportFormat.PDF);
+			try {
+				File tmpReportF = File.createTempFile("report_" + reportFileId, UUID.randomUUID().toString());
+				FileOutputStream fsio = new FileOutputStream(tmpReportF);
+				fsio.write(renderedReport);
+				fsio.flush();
+				fsio.close();
+			} catch (Exception e) {
+				Log.error(e.getMessage(), e);
+			}
 			return new ResponseEntity<byte[]>(renderedReport, HttpStatus.OK);
 		} catch (HttpClientErrorException hce) {
 			if (HttpStatus.NOT_FOUND.equals(hce.getStatusCode())) {
